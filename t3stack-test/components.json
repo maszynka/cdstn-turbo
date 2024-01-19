@@ -11,7 +11,7 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils"
+    "components": "@t3-test/components",
+    "utils": "@t3-test/lib/utils"
   }
 }
