@@ -4,14 +4,26 @@
  */
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@t3-test/components/ui/card"
 import { Button } from "@t3-test/components/ui/button"
+import Image from "next/image"
+
 
 export function HomePageMock1() {
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-primary-500 bg-opacity-50">
-      <div className="rounded-xl overflow-hidden relative">
-        <img
+    <div className="bg-primary-500 relative grid grid-cols-1 gap-6 bg-opacity-50 p-6 md:grid-cols-2">
+      <div className="absolute left-0 top-0 w-[100vw] blur-sm">
+        <Image
+          alt=""
+          width={1440}
+          height={427}
+          className="w-[100vw] "
+          src="/images/yoga_at_desk_business.jpg"
+        />
+      </div>
+      <div className="relative overflow-hidden rounded-xl">
+        <Image
           alt="Programmer at desk"
-          className="absolute inset-0 object-cover w-full h-full"
+          className="absolute inset-0 h-full w-full object-cover"
           height="1080"
           src="/placeholder.svg"
           style={{
@@ -20,57 +32,77 @@ export function HomePageMock1() {
           }}
           width="1920"
         />
-        <span className="w-full aspect-video rounded-md bg-muted" />
-        <div className="py-2 grid gap-2 bg-white bg-opacity-75">
-          <h1 className="text-xl font-semibold line-clamp-2">Guided Exercise: Desk Yoga</h1>
+        <span className="aspect-video w-full rounded-md bg-muted" />
+        <div className="grid gap-2 bg-white bg-opacity-75 py-2">
+          <h1 className="line-clamp-2 text-xl font-semibold">
+            Guided Exercise: Desk Yoga
+          </h1>
           <div className="text-sm">
             <div className="font-semibold">Duration: 15 minutes</div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">Instructor: Jane Doe</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">
+              Instructor: Jane Doe
+            </div>
           </div>
         </div>
       </div>
-      <div className="grid sm:grid-cols-2 gap-4 w-full max-w-2xl mx-auto">
-        <img
+      <div className="relative mx-auto grid w-full max-w-2xl gap-4 overflow-hidden sm:grid-cols-2">
+        {/* <Image
           alt="Movement Instruction 1"
-          className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden dark:border-gray-800"
+          className="aspect-square w-full overflow-hidden rounded-lg border border-yellow object-cover dark:border-gray-800"
           height={600}
           src="/placeholder.svg"
           width={600}
-        />
-        <img
+        /> */}
+        <video width="600" height="600" controls preload="none">
+          <source src="/videos/simple_video.mp4" type="video/mp4" />
+          <track
+    
+            kind="subtitles"
+           
+            label="English"
+          />
+          Your browser does not support the video tag.
+        </video>
+        <Image
           alt="Movement Instruction 2"
-          className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden dark:border-gray-800"
+          className="aspect-square w-full overflow-hidden rounded-lg border border-gray-200 object-cover dark:border-gray-800"
           height={600}
           src="/placeholder.svg"
           width={600}
         />
-        <img
+        <Image
           alt="Movement Instruction 3"
-          className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden dark:border-gray-800"
+          className="aspect-square w-full overflow-hidden rounded-lg border border-gray-200 object-cover dark:border-gray-800"
           height={600}
           src="/placeholder.svg"
           width={600}
         />
-        <img
+        <Image
           alt="Movement Instruction 4"
-          className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden dark:border-gray-800"
+          className="aspect-square w-full overflow-hidden rounded-lg border border-gray-200 object-cover dark:border-gray-800"
           height={600}
           src="/placeholder.svg"
           width={600}
         />
       </div>
-      <div className="w-full">
-        <h2 className="text-2xl font-semibold text-primary-700">Resource Library</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="relative w-full overflow-hidden">
+        <h2 className="text-primary-700 text-2xl font-semibold">
+          Resource Library
+        </h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <Card className="h-full w-full max-w-2xl">
             <CardHeader>
               <CardTitle>Understanding Ergonomics</CardTitle>
               <CardDescription>
-                A comprehensive guide to understanding and implementing ergonomics in your workspace.
+                A comprehensive guide to understanding and implementing
+                ergonomics in your workspace.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="text-primary-700 border-primary-700" variant="outline">
+              <Button
+                className="text-primary-700 border-primary-700"
+                variant="outline"
+              >
                 Read More
               </Button>
             </CardContent>
@@ -79,11 +111,15 @@ export function HomePageMock1() {
             <CardHeader>
               <CardTitle>Preventing Carpal Tunnel Syndrome</CardTitle>
               <CardDescription>
-                Learn about the causes, symptoms, and prevention strategies for carpal tunnel syndrome.
+                Learn about the causes, symptoms, and prevention strategies for
+                carpal tunnel syndrome.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="text-primary-700 border-primary-700" variant="outline">
+              <Button
+                className="text-primary-700 border-primary-700"
+                variant="outline"
+              >
                 Read More
               </Button>
             </CardContent>
@@ -91,5 +127,5 @@ export function HomePageMock1() {
         </div>
       </div>
     </div>
-  )
+  );
 }
