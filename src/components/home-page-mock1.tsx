@@ -53,14 +53,16 @@ export function HomePageMock1() {
           src="/placeholder.svg"
           width={600}
         /> */}
-        <video width="600" height="600" controls preload="none">
+        <video
+          width="600"
+          height="600"
+          muted
+          controls
+          preload="none"
+          poster="\images\yoga_at_desk_business.jpg"
+        >
           <source src="/videos/simple_video.mp4" type="video/mp4" />
-          <track
-    
-            kind="subtitles"
-           
-            label="English"
-          />
+          <track kind="subtitles" label="English" />
           Your browser does not support the video tag.
         </video>
         <Image
