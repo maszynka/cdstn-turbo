@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    padding: 32px, 40px, 32px, 40px;
+    justify-content: space-between;
+    &__h1-and-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 48px 
+    }
+    nav {
+        ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            gap: 40px;
+            li {
+                margin: 0;
+                a {
+                    text-decoration: none;
+                    color: #2C6CDD;
+                    font-weight: bold;
+                    padding: .5em;
+                }
+            }
+        
+        }
+    }
+    &__newsletter-link {
+        background-color: #2C6CDD;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+}
+
+.spec {
+    &__label {
+        opacity: 72%;
+    }
+    &__value {
+
+    }
+}

@@ -1,6 +1,13 @@
-import { HomePageMock1 } from "@t3-test/components/home-page-mock1";
+import { Header } from "@t3-test/components/ui/Header";
+import { Panel } from "@t3-test/components/ui/Panel/Panel";
 import Link from "next/link";
+import { ReactNode } from "react";
+
 
 export default function HomePage() {
-  return <HomePageMock1/>;
+  return (
+    <div>
+        <Panel title="Butchers block" summary="A summary of the butchers block"/>
+    </div>
+  );
 }

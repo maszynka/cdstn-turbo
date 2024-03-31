@@ -1,6 +1,8 @@
+import { Header } from "@t3-test/components/ui/Header";
 import "@t3-test/styles/globals.css";
 
 import { Inter } from "next/font/google";
+import RawLink, { LinkProps } from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,6 +15,10 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+export const Link = (props: LinkProps) => (
+  <RawLink {...props} className="gap-4" />
+);
+
 export default function RootLayout({
   children,
 }: {
@@ -20,7 +26,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body className={`grid font-sans ${inter.variable} p-6`}>
+        <Header
+          links={[
+            { title: "Home", href: "/" },
+            { title: "CF-Stream", href: "/cf-stream" },
+            { title: "Shaka", href: "/shaka" },
+          ]}
+        />
+        {children}
+      </body>
     </html>
   );
 }

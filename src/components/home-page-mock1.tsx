@@ -12,6 +12,8 @@ import {
 import { Button } from "@t3-test/components/ui/button";
 import Image from "next/image";
 import { ReactNode } from "react";
+import { Stream } from "./ui/Video/Stream";
+
 
 export const Panel = ({ children }: { children?: ReactNode }) => {
   return <div>{children}</div>;
@@ -19,13 +21,14 @@ export const Panel = ({ children }: { children?: ReactNode }) => {
 
 export function HomePageMock1() {
   return (
-    <div className="bg-primary-500 relative grid grid-cols-1 gap-6 bg-opacity-50 p-6">
+    <div className="bg-primary-500 relative grid grid-cols-1 gap-6 bg-opacity-50">
       <Panel>
         <h1 className="text-4xl font-semibold ">Movement Library</h1>
         <h2>Import movemement into life.</h2>
 
       </Panel>
       <Panel>
+        <Stream src="e7fa7fca56f3eafe4213e023888b5632" controls responsive={false}/>
         <h3>1. Deska rzeźnika (butchers block)</h3>
         <strong>Krok po kroku:</strong>
         <span>czas wykonania: 12 sekund</span>
