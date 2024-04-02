@@ -25,6 +25,8 @@
     "shaka-player-react": "^1.1.5",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
+    "vercel": "^33.6.2",
+    "wrangler": "^3.41.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
