@@ -5,6 +5,10 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {  
+    images: {
+    loader: 'custom',
+    loaderFile: './src/lib/img-loader.js',
+  },};
 
 export default config;

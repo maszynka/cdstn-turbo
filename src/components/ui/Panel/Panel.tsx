@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import './panel.scss';
+import { Stream } from "../Video/Stream";
 interface MovementSpec {
   label: string;
   value: ReactNode;
@@ -44,6 +45,8 @@ export const Panel = ({ title, summary }: PanelProps) => {
           { label: "Weirdeness:", value: <YAGTLF/> },
         ]}
       />
+      <Stream src="c81d1a3f4edafc5be5edfaf540c8d43c" width={1920} height={1080} controls autoplay style={{'--bg': ''}}/>
+
     </div>
   );
 };
