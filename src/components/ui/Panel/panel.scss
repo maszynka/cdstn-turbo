@@ -26,10 +26,6 @@
 .specs {
     display: flex;
     flex-wrap: no-wrap;
-    // justify-content: space-between;
-    // align-items: center;
-    // justify-items: center;
-    // align-content: center;
     margin-top: 24px;
 
 }
@@ -63,6 +59,7 @@
     &__label, &__value {
         flex-basis: min-content;
     }
+}
 .p-bg {
     background-image: var(--bg);
 }
