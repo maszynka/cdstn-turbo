@@ -7,7 +7,10 @@ import { ReactNode } from "react";
 export default function HomePage() {
   return (
     <div>
-        <Panel title="Butchers block" summary="A summary of the butchers block"/>
+        <Panel 
+        title="Butchers block" 
+        summary="A small description about what is a butchers block and how it affects your life."
+        />
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import { Header } from "@t3-test/components/ui/Header";
 import "@t3-test/styles/globals.css";
+import clsx from "clsx";
 
 import { Inter } from "next/font/google";
 import RawLink, { LinkProps } from "next/link";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
+  weight: ["500"],
   variable: "--font-sans",
 });
 
@@ -19,14 +21,17 @@ export const Link = (props: LinkProps) => (
   <RawLink {...props} className="gap-4" />
 );
 
+const isDark = true;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const classNames = clsx(isDark && 'dark', `grid font-sans ${inter.variable} p-6`);
   return (
     <html lang="en">
-      <body className={`grid font-sans ${inter.variable} p-6`}>
+      <body className={classNames}>
         <Header
           links={[
             { title: "Home", href: "/" },

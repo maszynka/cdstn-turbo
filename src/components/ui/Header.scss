@@ -1,9 +1,21 @@
+h1 {
+    font-family: DM Sans;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26.04px;
+    letter-spacing: -0.800000011920929px;
+    text-align: left;
+
+}
+
 .header {
     display: flex;
     padding: 32px, 40px, 32px, 40px;
     justify-content: space-between;
+    flex-direction: column;
     &__h1-and-nav {
         display: flex;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
         gap: 48px 
@@ -18,9 +30,14 @@
             li {
                 margin: 0;
                 a {
+                    font-family: Inter;
+                    font-size: 16px;
+                    font-weight: 500;
+                    line-height: 19.36px;
+                    text-align: left;
+
                     text-decoration: none;
-                    color: #2C6CDD;
-                    font-weight: bold;
+                    // color: #2C6CDD;
                     padding: .5em;
                 }
             }
@@ -32,6 +49,7 @@
         color: white;
         padding: 10px 20px;
         border-radius: 8px;
+        align-self: last baseline
     }
 }
 
@@ -40,6 +58,69 @@
         opacity: 72%;
     }
     &__value {
+
+    }
+}
+
+.invitation {
+    margin-top: 148px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    .button-like-invitation {
+        flex-grow: 0;
+        display: inline-block;
+        justify-self: center;
+        position: relative;
+
+        border-image-source: linear-gradient(264.69deg, #13F1FF 0%, #9E7CFF 100%);
+
+
+        $border: 2px;
+        $radius: 8px;
+        background: #000;
+        background-clip: padding-box; /* !importanté */
+        border: solid $border transparent; /* !importanté */
+        border-radius: $radius;
+        padding: 4px 10px 4px 6px ;
+      
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0; right: 0; bottom: 0; left: 0;
+          z-index: -1;
+          margin: -$border; /* !importanté */
+          border-radius: inherit; /* !importanté */
+          background: linear-gradient(264.69deg, #13F1FF 0%, #9E7CFF 100%);
+        }
+        
+        span {
+            background: linear-gradient(264.69deg, #13F1FF 0%, #9E7CFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+        }
+
+
+
+    }
+    .slogan {
+        // font-family: Inter;
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 58.09px;
+        margin: 24px auto;
+        text-align: center;
+
+    }
+    .subslogan {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: center;
+color: rgba(255, 255, 255, 0.72);
 
     }
 }

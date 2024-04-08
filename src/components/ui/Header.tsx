@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import Link from "next/link";
 import "./Header.scss";
+import { useEffect } from "react";
 
 const headers = ["Async Workouts", "Code_Workouts_"];
 
 const H1 = () => {
-  return <h1>Async Workouts</h1>;
+  return <h1 className="font-sans text-xl font-medium leading-6 tracking-tighter text-left">Code_Workouts_</h1>;
 };
 
 // const links = [
@@ -43,14 +44,25 @@ const NewsletterLink = () => {
   );
 };
 
+const Invitation = () => {
+  return (
+    <div className="invitation">
+      <h3 className="button-like-invitation"><span>✨ Make work efficient without body pain</span></h3>
+      <h2 className="slogan">Mobility workouts not only for the coders_</h2>
+      <h4 className="subslogan">Minimize your your pain with our movement library.</h4>
+    </div>
+  )
+}
+
 export const Header = ({links}: {links: Links}) => {
   return (
     <div className="header">
       <div className={clsx("header__h1-and-nav")}>
-        <H1 />
+        <H1/>
         <Nav links={links}/>
+        <NewsletterLink/>
       </div>
-      <NewsletterLink />
+      <Invitation/>
     </div>
   );
 };

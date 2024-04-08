@@ -34,14 +34,14 @@ const YAGTLF = () => (
 
 export const Panel = ({ title, summary }: PanelProps) => {
   return (
-    <div>
-      <h3>{title}</h3>
+    <div className="panel">
+      <h3 className="panel__title">{title}</h3>
       <p>{summary}</p>
       <Specs
         specs={[
-          { label: "Time", value: "12s" },
-          { label: "For who", value: "Everyone" },
-          { label: "Weirdeness", value: <YAGTLF/> },
+          { label: "Time:", value: "12s" },
+          { label: "Advance level:", value: "Beginner/Everyone" },
+          { label: "Weirdeness:", value: <YAGTLF/> },
         ]}
       />
     </div>
