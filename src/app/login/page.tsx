@@ -13,7 +13,7 @@ interface LoginProps {
   setPasswordError: (passwordError: string) => void;
 }
 
-const Login: React.FC<LoginProps> = () => {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -113,4 +113,3 @@ const Login: React.FC<LoginProps> = () => {
   );
 };
 
-export default Login;

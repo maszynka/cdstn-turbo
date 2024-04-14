@@ -57,9 +57,7 @@ h1 {
     &__label {
         opacity: 72%;
     }
-    &__value {
 
-    }
 }
 
 .invitation {
@@ -98,6 +96,7 @@ h1 {
         
         span {
             background: linear-gradient(264.69deg, #13F1FF 0%, #9E7CFF 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             

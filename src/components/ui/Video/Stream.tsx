@@ -29,9 +29,9 @@ const getThumbnailUrl = ({
   const customer = `customer-5nuwf6mbzsibfqza`;
   const basePart = `https://${customer}.cloudflarestream.com`;
   const thumbnailBase = new URL(`${src}/thumbnails/thumbnail.jpg`, basePart)
-  thumbnailBase.searchParams.append('height', height)
-  thumbnailBase.searchParams.append('width', width)
-  thumbnailBase.searchParams.append('time', time)
+  thumbnailBase.searchParams.append('height', String(height))
+  thumbnailBase.searchParams.append('width', String(width))
+  thumbnailBase.searchParams.append('time', String(time))
 
   return thumbnailBase.href
 }
@@ -85,7 +85,6 @@ export const Stream = ({
         width={`${width}px`}
         height={`${height}px`}
         className="stream-iframe"
-        style={{display: 'none'}}
       //   responsive={false}
         {...props}
       />

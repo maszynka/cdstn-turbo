@@ -17,7 +17,7 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export const Link = (props: LinkProps) => (
+const Link = (props: LinkProps) => (
   <RawLink {...props} className="gap-4" />
 );
 
