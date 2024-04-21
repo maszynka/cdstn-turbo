@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import "./Header.scss";
 import { useEffect } from "react";
+import { GradientTxt, GradientTxtWrap } from "../Txt";
 
 const headers = ["Async Workouts", "Code_Workouts_"];
 
@@ -44,10 +45,12 @@ const NewsletterLink = () => {
   );
 };
 
+
+
 const Invitation = () => {
   return (
     <div className="invitation">
-      <h3 className="button-like-invitation"><span>✨ Make work efficient without body pain</span></h3>
+      <GradientTxtWrap className="shiny-slogan">✨<GradientTxt>Make work efficient without body pain</GradientTxt></GradientTxtWrap>
       <h2 className="slogan">Mobility workouts not only for the coders_</h2>
       <h4 className="subslogan">Minimize your your pain with our movement library.</h4>
     </div>

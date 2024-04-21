@@ -79,8 +79,8 @@ export const Stream = ({
       '--height': height,
     } as unknown as CSSProperties}
     >
-      <Image src={thumbUrl} alt="" width={thumbWidth} height={thumbHeight} className=""/>
-      <div className="stream--inner-wrap" >
+      {/* <div className="stream--inner-wrap" > */}
+      {/* <Image src={thumbUrl} alt="" width={thumbWidth} height={thumbHeight} className="stream__thumb"/> */}
       <RawStream
         width={`${width}px`}
         height={`${height}px`}
@@ -88,7 +88,7 @@ export const Stream = ({
       //   responsive={false}
         {...props}
       />
-      </div>
+      {/* </div> */}
     </div>
   )
 

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import './panel.scss';
 import { Stream } from "../Video/Stream";
+import { GradientTxt, GradientTxtWrap } from "@t3-test/components/Txt";
 interface MovementSpec {
   label: string;
   value: ReactNode;
@@ -30,7 +31,7 @@ type PanelProps = {
 };
 
 const YAGTLF = () => (
-  <button className="btn--yagtlf">You are going to look fine 🏆</button>
+  <GradientTxtWrap><GradientTxt>You are going to look fine</GradientTxt> 🏆</GradientTxtWrap>
 );
 
 export const Panel = ({ title, summary }: PanelProps) => {

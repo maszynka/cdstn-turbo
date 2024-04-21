@@ -4,11 +4,12 @@ import clsx from "clsx";
 
 import { Inter } from "next/font/google";
 import RawLink, { LinkProps } from "next/link";
+import './layouts.scss';
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
   weight: ["500"],
-  variable: "--font-sans",
+  variable: "--font-inter",
 });
 
 export const metadata = {
@@ -28,7 +29,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const classNames = clsx(isDark && 'dark', `grid font-sans ${inter.variable} p-6`);
+  const classNames = clsx(isDark && 'dark', `grid ${inter.variable} p-6`);
   return (
     <html lang="en">
       <body className={classNames}>

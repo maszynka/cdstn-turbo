@@ -11,7 +11,8 @@
 
 
 .panel {
-    background: rgba(23, 23, 23, 1);    ;
+    --bg: rgba(23, 23, 23, 1);
+    background: rgba(23, 23, 23, 1);
     border: 1px solid rgba(255, 255, 255, 0.16);
     padding: 40px;
     border-radius: 24px;    ;
