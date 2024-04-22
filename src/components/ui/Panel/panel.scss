@@ -41,22 +41,26 @@
     gap: 8px;
     position: relative;
     &:not(:last-child) {
-        padding-right: 26px;
+        // padding-right: 26px;
         &:after {
-        content: '';
-        display: block;
-        height: 4px;
-        width: 4px;
-        border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        background: rgba(226, 224, 224, 0.72);        ;
+            content: '·';
+            padding-left: 14px;
+            color: rgba(226, 224, 224, 0.72);
+            font-size: 30px;
+        // content: '';
+        // display: block;
+        // height: 4px;
+        // width: 4px;
+        // border-radius: 50%;
+        // position: absolute;
+        // top: 50%;
+        // right: 0;
+        // transform: translateY(-50%);
+
         }
     }
     &:not(:first-child) {
-        padding-left: 24px;
+        padding-left: 22px;
     }
     &__label, &__value {
         flex-basis: min-content;
