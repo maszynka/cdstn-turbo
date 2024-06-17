@@ -11,17 +11,45 @@
 
 
 .panel {
+    display: flex;
+    flex-direction: column;
     --bg: rgba(23, 23, 23, 1);
     background: rgba(23, 23, 23, 1);
     border: 1px solid rgba(255, 255, 255, 0.16);
     padding: 40px;
-    border-radius: 24px;    ;
+    border-radius: 24px;
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
     &__title {
         font-size: 24px;
         font-weight: 600;
         line-height: 29.05px;
         text-align: left;
         padding-bottom: 16px;
+        display: inline
+    }
+    &__summary {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+    }
+}
+
+.tags {
+    display: inline-flex;
+    color: rgba(255, 255, 255, 0.72);
+    gap: 8px;
+    .tag {
+        font-size: 14px;
+        line-height: 16.94px;        ;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        border-radius: 8px;
+        padding: 6px 8px;
     }
 }
 
@@ -29,7 +57,7 @@
     display: flex;
     flex-wrap: no-wrap;
     margin-top: 24px;
-
+    margin-bottom: 24px;
 }
 
 .spec {
@@ -40,13 +68,24 @@
     word-wrap: nowrap;
     gap: 8px;
     position: relative;
+    padding-right: 1em;
+    transform: translateY(-50%);
+
     &:not(:last-child) {
         // padding-right: 26px;
         &:after {
-            content: '·';
-            padding-left: 14px;
-            color: rgba(226, 224, 224, 0.72);
-            font-size: 30px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            left: auto;
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            background: rgba(226, 224, 224, 0.72);
+            border-radius: 50%;
+            // font-size: 30px;
+            // line-height: 16px;
         // content: '';
         // display: block;
         // height: 4px;
@@ -66,6 +105,21 @@
         flex-basis: min-content;
     }
 }
+// .tags {
+//     display: inline-flex;
+//     flex-wrap: wrap;
+//     gap: 8px;
+//     &__tag {
+//         background: rgba(255, 255, 255, 0.16);
+//         border-radius: 8px;
+//         padding: 4px 8px;
+//         font-size: 12px;
+//         font-weight: 400;
+//         line-height: 14.52px;
+//         color: rgba(255, 255, 255, 0.72);
+//     }
+
+// }
 .p-bg {
     background-image: var(--bg);
 }

@@ -1,11 +1,11 @@
 .gradient-txt-wrap {
-    flex-grow: 0;
-    display: inline-block;
-    justify-self: center;
-    position: relative;
-
-    // border-image-source: linear-gradient(264.69deg, #13F1FF 0%, #9E7CFF 100%);
-
+  position: relative;
+  .gradient-txt-border {
+    position: absolute;
+    top: -4px;
+    right: -10px;
+    bottom: -4px;
+    left: -10px;
 
     $border: 2px;
     // $radius: 8px;
@@ -13,28 +13,39 @@
     background-clip: padding-box; /* !importanté */
     // border: solid $border transparent; /* !importanté */
     // border-radius: $radius;
-    padding: 4px 10px 4px 6px ;
+    padding: 4px 10px 4px 6px;
     border-radius: 8px;
+
     &:before {
-      content: '';
+      content: "";
       position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       z-index: -1;
       margin: -$border; /* !importanté */
       border-radius: inherit; /* !importanté */
-      background: linear-gradient(264.69deg, #13F1FF 0%, #9E7CFF 100%);
+      background: linear-gradient(264.69deg, #13f1ff 0%, #9e7cff 100%);
     }
-    
+  }
+  .gradient-txt__label {
+    position: relative;
+    z-index: 1;
+  }
+  flex-grow: 0;
+  display: inline-block;
+  justify-self: center;
+  position: relative;
 
+  // border-image-source: linear-gradient(264.69deg, #13F1FF 0%, #9E7CFF 100%);
 
-
-
+  
 }
 
 .gradient-txt {
-    background: linear-gradient(264.69deg, #13F1FF 0%, #9E7CFF 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
+  background: linear-gradient(264.69deg, #13f1ff 0%, #9e7cff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

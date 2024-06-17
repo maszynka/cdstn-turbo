@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import './panel.scss';
+import "./panel.scss";
 import { Stream } from "../Video/Stream";
 import { GradientTxt, GradientTxtWrap } from "@t3-test/components/Txt";
 interface MovementSpec {
@@ -31,23 +31,47 @@ type PanelProps = {
 };
 
 const YAGTLF = () => (
-  <GradientTxtWrap><GradientTxt>You are going to look fine</GradientTxt> 🏆</GradientTxtWrap>
+  <GradientTxtWrap>
+    <GradientTxt>You are going to look fine</GradientTxt> 🏆
+  </GradientTxtWrap>
 );
+
+const Tags = ({ children }: { children: ReactNode }) => {
+  return <div className="tags">{children}</div>;
+};
+
+const Tag = ({ children }: { children: ReactNode }) => {
+  return <span className="tag">{children}</span>;
+};
 
 export const Panel = ({ title, summary }: PanelProps) => {
   return (
     <div className="panel">
-      <h3 className="panel__title">{title}</h3>
-      <p>{summary}</p>
+      <div className="panel__header">
+        <h3 className="panel__title">{title}</h3>
+        <Tags>
+          <Tag>Only desk</Tag>
+          <Tag>Backpain</Tag>
+          <Tag>Neck</Tag>
+          <Tag>Quick results</Tag>
+        </Tags>
+      </div>
+
+      <p className="panel__summary">{summary}</p>
       <Specs
         specs={[
           { label: "Time:", value: "12s" },
           { label: "Advance level:", value: "Beginner/Everyone" },
-          { label: "Weirdeness:", value: <YAGTLF/> },
+          { label: "Weirdeness:", value: <YAGTLF /> },
         ]}
       />
-      <Stream src="c81d1a3f4edafc5be5edfaf540c8d43c" width={1920} height={1080} controls autoplay />
-
+      <Stream
+        src="c81d1a3f4edafc5be5edfaf540c8d43c"
+        width={1920}
+        height={1080}
+        controls
+        autoplay
+      />
     </div>
   );
 };

@@ -4,4 +4,7 @@ body {
     font-family: var(--font-inter), 'Inter', sans-serif;
     font-size: 16px;
     line-height: 24px;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none !important;
 }
