@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import "./panel.scss";
 import { Stream } from "../Video/Stream";
 import { GradientTxt, GradientTxtWrap } from "@t3-test/components/Txt";

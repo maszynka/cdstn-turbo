@@ -2,16 +2,16 @@
 
 import React, { useState } from "react";
 
-interface LoginProps {
-  email: string;
-  password: string;
-  setEmail: (email: string) => void;
-  setPassword: (password: string) => void;
-  emailError: string;
-  setEmailError: (emailError: string) => void;
-  passwordError: string;
-  setPasswordError: (passwordError: string) => void;
-}
+// interface LoginProps {
+//   email: string;
+//   password: string;
+//   setEmail: (email: string) => void;
+//   setPassword: (password: string) => void;
+//   emailError: string;
+//   setEmailError: (emailError: string) => void;
+//   passwordError: string;
+//   setPasswordError: (passwordError: string) => void;
+// }
 
 export default function Login() {
   const [email, setEmail] = useState("");

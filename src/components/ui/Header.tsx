@@ -1,10 +1,9 @@
 import clsx from "clsx";
 import Link from "next/link";
 import "./Header.scss";
-import { useEffect } from "react";
 import { GradientTxt, GradientTxtWrap } from "../Txt";
 
-const headers = ["Async Workouts", "Code_Workouts_"];
+// const headers = ["Async Workouts", "Code_Workouts_"];
 
 const H1 = () => {
   return <h1 className="font-sans text-xl font-medium leading-6 tracking-tighter text-left">Code_Workouts_</h1>;

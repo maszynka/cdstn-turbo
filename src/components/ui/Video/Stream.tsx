@@ -1,9 +1,9 @@
 "use client";
 
 import { Stream as RawStream } from "@cloudflare/stream-react";
-import { StreamProps } from "@cloudflare/stream-react/dist/types";
-import { CSSProperties, useMemo } from "react";
-import Image from 'next/image';
+import { type StreamProps } from "@cloudflare/stream-react/dist/types";
+import { type CSSProperties, useMemo } from "react";
+// import Image from 'next/image';
 
 
 import './stream.scss';

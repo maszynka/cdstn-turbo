@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 interface ProgressBarProps {
   progress1: number;
@@ -6,11 +6,11 @@ interface ProgressBarProps {
   progress3: number;
 }
 
-const ProgressBar: FC<ProgressBarProps> = ({
+const ProgressBar = ({
   progress1,
   progress2,
   progress3,
-}) => {
+}: ProgressBarProps) => {
   return (
     <div className="w-[600px] space-y-4">
       <div className="flex w-full  items-center gap-8 rounded ">

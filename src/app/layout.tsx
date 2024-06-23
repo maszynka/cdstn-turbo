@@ -3,7 +3,6 @@ import "@t3-test/styles/globals.css";
 import clsx from "clsx";
 
 import { Inter } from "next/font/google";
-import RawLink, { LinkProps } from "next/link";
 import './layouts.scss';
 
 const inter = Inter({
@@ -19,9 +18,9 @@ export const metadata = {
   viewport: "width=device-width, initial-scale=1.0, user-scalable=no",
 };
 
-const Link = (props: LinkProps) => (
-  <RawLink {...props} className="gap-4" />
-);
+// export const Link = (props: LinkProps) => (
+//   <RawLink {...props} className="gap-4" />
+// );
 
 const isDark = true;
 

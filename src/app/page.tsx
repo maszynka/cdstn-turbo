@@ -1,7 +1,7 @@
-import { Header } from "@t3-test/components/ui/Header";
+// import { Header } from "@t3-test/components/ui/Header";
 import { Panel } from "@t3-test/components/ui/Panel/Panel";
-import Link from "next/link";
-import { ReactNode } from "react";
+// import Link from "next/link";
+// import { type ReactNode } from "react";
 
 
 export default function HomePage() {
