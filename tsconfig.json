@@ -44,10 +44,9 @@
     // "**/*.cjs",
     // "**/*.js",
     ".next/typesz/**/*.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
   ],
   "exclude": [
     "node_modules",
-    "src/lib/img-loader.js"
   ]
 }

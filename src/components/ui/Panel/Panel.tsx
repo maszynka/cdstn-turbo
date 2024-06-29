@@ -31,7 +31,7 @@ type PanelProps = {
 };
 
 const YAGTLF = () => (
-  <GradientTxtWrap>
+  <GradientTxtWrap className="yagtlf">
     <GradientTxt>You are going to look fine</GradientTxt> 🏆
   </GradientTxtWrap>
 );
