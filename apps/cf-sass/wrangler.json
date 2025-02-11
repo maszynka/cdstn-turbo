@@ -1,0 +1,39 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cloudflare-workers-nextjs-saas-template",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-09-26",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "minify": true,
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "placement": {
+    "mode": "smart"
+  },
+  "vars": {
+    "EMAIL_FROM": "move2comfort_brevo@codestiny.pl",
+    "EMAIL_FROM_NAME": "Move to comfort",
+    "EMAIL_REPLY_TO": "move2comfort_brevo@codestiny.pl"
+  },
+  "d1_databases": [
+    {
+      "binding": "DATABASE",
+      "database_name": "cf-sass",
+      "database_id": "94dd1269-a29c-4621-adff-1762d1af6926",
+      "migrations_dir": "src/db/migrations"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_CACHE_WORKERS_KV",
+      "id": "7796951a-8b4e-4e5b-9805-291b8aa4ba23"
+    }
+  ]
+}

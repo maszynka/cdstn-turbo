@@ -1,0 +1,37 @@
+{
+    "deviceId": "f70db1b1-2f2f-4dc0-b011-563de2a53050",
+    "event": "wrangler command errored",
+    "timestamp": 1739228131643,
+    "properties": {
+        "amplitude_session_id": 1739228131577,
+        "amplitude_event_id": 1,
+        "wranglerVersion": "3.107.3",
+        "osPlatform": "Mac OS",
+        "osVersion": "Darwin Kernel Version 24.1.0: Thu Oct 10 21:06:57 PDT 2024; root:xnu-11215.41.3~3/RELEASE_ARM64_T6041",
+        "nodeVersion": 23,
+        "packageManager": "pnpm",
+        "isFirstUsage": false,
+        "configFileType": "jsonc",
+        "isCI": false,
+        "isPagesCI": false,
+        "isWorkersCI": false,
+        "isInteractive": true,
+        "hasAssets": true,
+        "argsUsed": [
+            "local"
+        ],
+        "argsCombination": "local",
+        "command": "wrangler d1 migrations apply",
+        "args": {
+            "local": true,
+            "xJsonConfig": true,
+            "j": true,
+            "preview": false,
+            "database": "<REDACTED>"
+        },
+        "durationMs": 72,
+        "durationSeconds": 0.072,
+        "durationMinutes": 0.0012,
+        "errorType": "UserError"
+    }
+}
