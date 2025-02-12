@@ -27,8 +27,6 @@ interface ResendEmailOptions {
   tags?: { name: string; value: string }[];
 }
 
-//
-
 interface GmailEmailOptions {
   to: string[];
   subject: string;
@@ -255,47 +253,6 @@ async function sendBrevoEmail({
   }
 
   return response.json();
-}
-
-export async function sendPasswordResetEmail({
-  email,
-  resetToken,
-  username
-}: {
-  email: string;
-  resetToken: string;
-  username: string;
-}) {
-  const resetUrl = `${SITE_URL}/reset-password?token=${resetToken}`;
-
-  if (!isProd) {
-    console.warn('\n\n\nPassword reset url: ', resetUrl)
-
-    return
-  }
-
-  const html = await render(ResetPasswordEmail({ resetLink: resetUrl, username }));
-  const provider = await getEmailProvider();
-
-  if (!provider && isProd) {
-    throw new Error("No email provider configured. Set either RESEND_API_KEY or BREVO_API_KEY in your environment.");
-  }
-
-  if (provider === "resend") {
-    await sendResendEmail({
-      to: [email],
-      subject: `Reset your password for ${SITE_DOMAIN}`,
-      html,
-      tags: [{ name: "type", value: "password-reset" }],
-    });
-  } else {
-    await sendBrevoEmail({
-      to: [{ email, name: username }],
-      subject: `Reset your password for ${SITE_DOMAIN}`,
-      htmlContent: html,
-      tags: ["password-reset"],
-    });
-  }
 }
 
 // Update the sendVerificationEmail function similarly
