@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       headers: {
         Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
       },
-      chunkSize: 50 * 1024 * 1024, // 50MB chunks
+      chunkSize: 5 * 1024 * 1024, // 50MB chunks
       retryDelays: [0, 3000, 5000, 10000, 20000],
       metadata: {
         name: file.name,

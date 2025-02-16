@@ -45,12 +45,14 @@ export function DropZone() {
     setErrorMessage(null)
 
     const upload = new TusUpload(file, {
-      endpoint: '/api/upload', // This goes through our secure API route
+      endpoint: '/api/dc-upload', // This goes through our secure API route
       retryDelays: [0, 3000, 5000, 10000, 20000],
       metadata: {
         filename: file.name,
         filetype: file.type
       },
+      chunkSize: 5 * 1024 * 1024, // 50MB chunks
+
       onError: (error) => {
         console.error("Upload error:", error)
         setErrorMessage(error.message || "Upload failed. Please try again.")
