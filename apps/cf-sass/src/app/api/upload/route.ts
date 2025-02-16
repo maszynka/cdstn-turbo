@@ -1,12 +1,12 @@
 import { NextRequest } from 'next/server';
 import { Upload } from 'tus-js-client';
-import { createReadStream, statSync } from 'node:fs/promises';
-import { join } from 'path';
+// import { createReadStream, statSync } from 'fs';
+// import { join } from 'path';
 
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const file = formData.get('file') as File;
-
+  console.log({ formData, file});
   if (!file) {
     return new Response('No file provided', { status: 400 });
   }
@@ -22,6 +22,18 @@ export async function POST(request: NextRequest) {
       metadata: {
         name: file.name,
         filetype: file.type,
+      },
+      onError: (error) => {
+        throw error;
+      },
+
+      onProgress: (bytesUploaded, bytesTotal) => {
+        const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+        console.log(`Upload progress: ${percentage}%`);
+      },
+
+      onSuccess: () => {
+        resolve(new Response('Upload successful', { status: 200 }));
       },
     });
 
