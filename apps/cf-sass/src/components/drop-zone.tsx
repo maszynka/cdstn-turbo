@@ -44,8 +44,9 @@ export function DropZone() {
     setUploadStatus("uploading")
     setErrorMessage(null)
 
+
     const upload = new TusUpload(file, {
-      endpoint: '/api/dc-upload', // This goes through our secure API route
+      endpoint: '/api/stream/upload', // This goes through our secure API route
       retryDelays: [0, 3000, 5000, 10000, 20000],
       metadata: {
         filename: file.name,
