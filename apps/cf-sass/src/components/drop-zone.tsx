@@ -5,8 +5,11 @@ import { useCallback, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { Upload, CheckCircle, AlertCircle } from "lucide-react"
 import { Upload as TusUpload} from 'tus-js-client';
+import Cloudflare from 'cloudflare';
+
 
 import * as Progress from '@radix-ui/react-progress'
+import { Video } from "cloudflare/resources/stream/stream.mjs";
 
 type UploadStatus = "idle" | "uploading" | "success" | "error"
 
@@ -15,10 +18,38 @@ interface UploadProgress {
   bytesTotal: number
 }
 
+const getDetails = async (videoId: string) => {
+  try {
+    const response = await fetch(`/api/stream/get-details/${videoId}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch video details');
+    }
+    const videoDetails = await response.json() as Video;
+    console.log('Video details:', videoDetails);
+    const state = videoDetails?.status?.state;
+
+    if(state === 'inprogress' || state === 'queued') {
+      setTimeout(async () => {
+        getDetails(videoId);
+      }, 1000);
+    }
+    if(state === 'ready') {
+      console.log('Video is ready');
+      return videoDetails;
+    }
+    // Handle video details here
+  } catch (error) {
+    console.error('Error fetching video details:', error);
+  }
+};
+
 export function DropZone() {
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [progress, setProgress] = useState<UploadProgress | null>(null)
+  const [videoId, setVideoId] = useState<string>()
+  const [videoStatusState, setVideoStatusState] = useState<Video.Status['state']>()
+
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     const file = acceptedFiles[0]
@@ -65,8 +96,41 @@ export function DropZone() {
           bytesTotal
         })
       },
-      onSuccess: () => {
+      onSuccess: async (payload) => {
         setUploadStatus("success")
+        const { lastResponse } = payload
+        const videoId = lastResponse.getHeader('Stream-Media-Id');
+        if (!videoId) {
+          console.error("No video ID found in response")
+          return
+        }
+        const details = await getDetails(videoId);
+        console.log('Video ID:', videoId, 'details:', details);
+        setVideoStatusState(details?.status?.state);
+
+        // if (details?.status?.state === 'ready') {
+        //   setVideoId(videoId);
+        //   setVideoStatusState('ready');
+        // }
+
+        // try {
+        //   const response = await fetch(`/api/stream/get-details/${videoId}`);
+        //   if (!response.ok) {
+        //     throw new Error('Failed to fetch video details');
+        //   }
+        //   const videoDetails = await response.json() as Video;
+        //   console.log('Video details:', videoDetails);
+        //   const state = videoDetails?.status?.state;
+
+        //   if(state === 'inprogress' || state === 'queued') {
+        //     setInterval(async () => {
+
+        //     }, 1000);
+        //   }
+        //   // Handle video details here
+        // } catch (error) {
+        //   console.error('Error fetching video details:', error);
+        // }
       }
     })
 
@@ -113,6 +177,8 @@ export function DropZone() {
     return Math.round((progress.bytesUploaded / progress.bytesTotal) * 100)
   }
 
+  const consumer = '5nuwf6mbzsibfqza';
+
   const dropZonesClassNames = `flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg transition-colors ${
     isDragActive ? "border-primary bg-primary/10" : "border-gray-300"
   } ${uploadStatus === "error" ? "border-red-500 bg-red-50" : ""}`;
@@ -144,10 +210,23 @@ export function DropZone() {
       )}
 
       {uploadStatus === "success" && (
-        <div className="flex items-center mt-4 text-sm text-green-500">
-          <CheckCircle className="w-4 h-4 mr-2" />
-          Upload successful!
-        </div>
+        <>
+          <div className="flex items-center mt-4 text-sm text-green-500">
+            <CheckCircle className="w-4 h-4 mr-2" />
+            Upload successful!
+          </div>
+          <div>
+          <strong>{videoStatusState && videoStatusState}</strong>
+          {videoStatusState && <iframe
+            src={`https://customer-${consumer}.cloudflarestream.com/${videoId}/iframe`}
+            style={{border: 'none'}}
+            height="720"
+            width="1280"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+            allowFullScreen={true}
+        ></iframe>}
+          </div>
+        </>
       )}
 
       {uploadStatus === "error" && (

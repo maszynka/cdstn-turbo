@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
             },
         });
 
-        console.log({response},
+        console.log('checking response \n', {response},
           '\n\n', CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_STREAM_API_TOKEN
         );
 
