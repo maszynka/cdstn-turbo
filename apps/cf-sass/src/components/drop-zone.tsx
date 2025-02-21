@@ -4,7 +4,7 @@
 import { useCallback, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { Upload, CheckCircle, AlertCircle } from "lucide-react"
-import { Upload as TusUpload} from 'tus-js-client';
+import { Upload as TusUpload } from 'tus-js-client';
 import Cloudflare from 'cloudflare';
 
 
@@ -18,7 +18,11 @@ interface UploadProgress {
   bytesTotal: number
 }
 
-const getDetails = async (videoId: string) => {
+const getDetails = async (
+  videoId: string,
+  setVideoStatusState: (videoStatusStae: Video.Status['state']) => void,
+  setVideoProcessingProgress: (videoProcessingProgress: number) => void
+) => {
   try {
     const response = await fetch(`/api/stream/get-details/${videoId}`);
     if (!response.ok) {
@@ -28,12 +32,17 @@ const getDetails = async (videoId: string) => {
     console.log('Video details:', videoDetails);
     const state = videoDetails?.status?.state;
 
-    if(state === 'inprogress' || state === 'queued') {
+    setVideoStatusState(state);
+
+    if (state === 'inprogress' && videoDetails?.status?.pctComplete) setVideoProcessingProgress(parseFloat(videoDetails?.status?.pctComplete));
+
+
+    if (state === 'inprogress' || state === 'queued') {
       setTimeout(async () => {
-        getDetails(videoId);
+        getDetails(videoId, setVideoStatusState, setVideoProcessingProgress);
       }, 1000);
     }
-    if(state === 'ready') {
+    if (state === 'ready') {
       console.log('Video is ready');
       return videoDetails;
     }
@@ -47,8 +56,9 @@ export function DropZone() {
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [progress, setProgress] = useState<UploadProgress | null>(null)
-  const [videoId, setVideoId] = useState<string>()
+  // const [videoId, setVideoId] = useState<string>()
   const [videoStatusState, setVideoStatusState] = useState<Video.Status['state']>()
+  const [videoProcessingProgress, setVideoProcessingProgress] = useState<number>(0);
 
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
@@ -59,7 +69,8 @@ export function DropZone() {
     }
 
     console.log(
-      {name: file.name,
+      {
+        name: file.name,
         lastModifiedDate: new Date(file.lastModified).toUTCString(),
         size: `${Math.round(file.size / 1024 / 1024)}mb`,
       }
@@ -104,9 +115,8 @@ export function DropZone() {
           console.error("No video ID found in response")
           return
         }
-        const details = await getDetails(videoId);
+        const details = await getDetails(videoId, setVideoStatusState, setVideoProcessingProgress);
         console.log('Video ID:', videoId, 'details:', details);
-        setVideoStatusState(details?.status?.state);
 
         // if (details?.status?.state === 'ready') {
         //   setVideoId(videoId);
@@ -177,16 +187,14 @@ export function DropZone() {
     return Math.round((progress.bytesUploaded / progress.bytesTotal) * 100)
   }
 
-  const consumer = '5nuwf6mbzsibfqza';
 
-  const dropZonesClassNames = `flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg transition-colors ${
-    isDragActive ? "border-primary bg-primary/10" : "border-gray-300"
-  } ${uploadStatus === "error" ? "border-red-500 bg-red-50" : ""}`;
+  const dropZonesClassNames = `flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg transition-colors ${isDragActive ? "border-primary bg-primary/10" : "border-gray-300"
+    } ${uploadStatus === "error" ? "border-red-500 bg-red-50" : ""}`;
 
   return (
     <div
-      {...getRootProps({className: dropZonesClassNames})}
-      >
+      {...getRootProps({ className: dropZonesClassNames })}
+    >
 
       <input {...getInputProps()} />
       <Upload className="w-12 h-12 mb-4 text-gray-400" />
@@ -216,15 +224,9 @@ export function DropZone() {
             Upload successful!
           </div>
           <div>
-          <strong>{videoStatusState && videoStatusState}</strong>
-          {videoStatusState && <iframe
-            src={`https://customer-${consumer}.cloudflarestream.com/${videoId}/iframe`}
-            style={{border: 'none'}}
-            height="720"
-            width="1280"
-            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-            allowFullScreen={true}
-        ></iframe>}
+            <strong>videoStatusState: {videoStatusState}</strong>
+
+            <strong>{videoProcessingProgress && `Progress: ${videoProcessingProgress}`}</strong>
           </div>
         </>
       )}

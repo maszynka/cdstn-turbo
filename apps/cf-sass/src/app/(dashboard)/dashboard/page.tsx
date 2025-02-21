@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/sidebar"
 
 export default function Page() {
+  const consumer = '5nuwf6mbzsibfqza';
+  const videoId = 'ca747e76f37ed2fc5fc50adbc03b569b';
+
   return (
     // TODO The sidebar needs to be moved to the layout
     <SidebarProvider>
@@ -46,7 +49,15 @@ export default function Page() {
               <DropZone />
             </div>
             <div className="aspect-video rounded-xl bg-muted/50 flex items-center justify-center">
-              Example
+
+              <iframe
+                src={`https://customer-${consumer}.cloudflarestream.com/${videoId}/iframe`}
+                style={{ border: 'none' }}
+                height="720"
+                width="1280"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowFullScreen={true}
+              ></iframe>
             </div>
             <div className="aspect-video rounded-xl bg-muted/50 flex items-center justify-center">
               Example

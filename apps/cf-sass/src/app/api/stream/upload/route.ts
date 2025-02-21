@@ -1,6 +1,7 @@
 import { getSessionFromCookie } from "@/utils/auth";
 import { NextRequest } from 'next/server';
 import { redirect } from "next/navigation";
+import { registerWebhook } from '@/utils/cloudflare';
 
 const corsHeaders = {
   "Access-Control-Expose-Headers": "Location",
@@ -43,6 +44,11 @@ export async function POST(request: NextRequest) {
         if (!CLOUDFLARE_ACCOUNT_ID || !CLOUDFLARE_STREAM_API_TOKEN) {
             throw new Error('Missing Cloudflare credentials');
         }
+
+        // Register webhook if not already registered
+        // if (!process.env.CLOUDFLARE_WEBHOOK_SECRET) {
+        //     await registerWebhook(CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_STREAM_API_TOKEN);
+        // }
 
         const endpoint = `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/stream?direct_user=true`;
         const metadataParts = [];
