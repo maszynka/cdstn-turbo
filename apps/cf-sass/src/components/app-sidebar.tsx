@@ -6,6 +6,7 @@ import {
   BookOpen,
   Bot,
   Command,
+  Dumbbell,
   Frame,
   GalleryVerticalEnd,
   Map,
@@ -51,6 +52,26 @@ const data = {
     },
   ],
   navMain: [
+    {
+      title: "Workout",
+      url: "#",
+      icon: Dumbbell,
+      isActive: true,
+      items: [
+        {
+          title: "Create",
+          url: "/dashboard/workout/create",
+        },
+        {
+          title: "List",
+          url: "#",
+        },
+        {
+          title: "Settings",
+          url: "#",
+        },
+      ],
+    },
     {
       title: "Playground",
       url: "#",

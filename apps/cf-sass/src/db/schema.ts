@@ -1,4 +1,4 @@
-import { sqliteTable, integer, text, index } from "drizzle-orm/sqlite-core";
+import { sqliteTable, integer, text, index, primaryKey } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
 import { type InferSelectModel } from "drizzle-orm";
 
@@ -9,7 +9,13 @@ const ROLES_ENUM = {
   USER: 'user',
 } as const;
 
-const roleTuple = Object.values(ROLES_ENUM) as [string, ...string[]];
+type ObjectToValues<T> = T[keyof T] extends string ? [T[keyof T], ...T[keyof T][]] : never;
+
+function objectToValues<T extends Record<string, string>>(obj: T): ObjectToValues<T> {
+  return Object.values(obj) as ObjectToValues<T>;
+}
+
+const roleTuple = objectToValues(ROLES_ENUM);
 
 const commonColumns = {
   id: text().primaryKey().$defaultFn(() => createId()).notNull(),
@@ -88,6 +94,29 @@ export const passKeyCredentialTable = sqliteTable("passkey_credential", {
   index('credential_id_idx').on(table.credentialId),
 ]));
 
+export const clientsTable = sqliteTable("clients", {
+  ...commonColumns,
+  name: text().notNull(),
+  due: integer({
+    mode: "timestamp",
+  }),
+  complianceRate: integer(),
+  userId: text().references(() => userTable.id),
+});
+
+export const clientGroupsTable = sqliteTable("client_groups", {
+  ...commonColumns,
+  name: text().notNull(),
+  description: text(),
+});
+
+export const clientToGroupsTable = sqliteTable("client_to_groups", {
+  clientId: text().references(() => clientsTable.id),
+  groupId: text().references(() => clientGroupsTable.id),
+}, (table) => ({
+  pk: primaryKey({ columns: [table.clientId, table.groupId] })
+}));
+
 export const userRelations = relations(userTable, ({ many }) => ({
   passkeys: many(passKeyCredentialTable),
 }));
@@ -99,5 +128,26 @@ export const passKeyCredentialRelations = relations(passKeyCredentialTable, ({ o
   }),
 }));
 
+export const clientRelations = relations(clientsTable, ({ many }) => ({
+  groups: many(clientToGroupsTable)
+}));
+
+export const clientGroupsRelations = relations(clientGroupsTable, ({ many }) => ({
+  clients: many(clientToGroupsTable)
+}));
+
+export const clientToGroupsRelations = relations(clientToGroupsTable, ({ one }) => ({
+  client: one(clientsTable, {
+    fields: [clientToGroupsTable.clientId],
+    references: [clientsTable.id],
+  }),
+  group: one(clientGroupsTable, {
+    fields: [clientToGroupsTable.groupId],
+    references: [clientGroupsTable.id],
+  }),
+}));
+
 export type User = InferSelectModel<typeof userTable>;
 export type PassKeyCredential = InferSelectModel<typeof passKeyCredentialTable>;
+export type Client = InferSelectModel<typeof clientsTable>;
+export type ClientGroup = InferSelectModel<typeof clientGroupsTable>;
