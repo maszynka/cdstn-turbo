@@ -132,9 +132,6 @@ export default function Page() {
                   <DropZone />
                 </div>
 
-                <div className="aspect-video rounded-xl bg-muted/50">
-                  {/* Preview area for uploaded videos */}
-                </div>
               </div>
 
               <div className="space-y-4">
