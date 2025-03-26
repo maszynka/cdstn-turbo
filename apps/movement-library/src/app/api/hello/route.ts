@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 export const runtime = 'edge';
 
 export async function GET(_: Request) {
-	const cookieStore = cookies();
+	const cookieStore = await cookies();
 	const token = cookieStore.get('token');
 	console.log('token', token);
 
