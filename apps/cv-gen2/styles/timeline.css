@@ -35,15 +35,23 @@
   margin-left: 5px;
 }
 
-.sub-jobs:before {
+.sub-jobs:before, .sub-jobs:after {
   display: block;
   content: "";
-  width: 24px;
+  width: 34px;
   height: 2px;
-  background-color: black;
+  background-color: #ddd;
   position: absolute;
   left: -15px;
+
+}
+
+.sub-jobs:before {
   top: 0;   
+}
+
+.sub-jobs:after {
+  bottom: 0;   
 }
 
 /* Increase section heading sizes */
@@ -65,4 +73,7 @@ h2.section-title {
 .contact-info {
   justify-content: flex-start;
 }
+
+
+/* Add padding to the top of the page */
 

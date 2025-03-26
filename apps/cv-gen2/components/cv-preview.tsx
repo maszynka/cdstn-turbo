@@ -169,20 +169,63 @@ export function CvPreview({ cvData }: CvPreviewProps) {
               background-color: white;
             }
             
-            .timeline-line {
-              position: absolute;
-              left: -15px;
-              top: 0;
-              bottom: 0;
-              width: 2px;
-              background-color: #ddd;
-            }
             
             .job-duration {
               color: #777;
               font-size: 13px;
               margin-left: 5px;
             }
+
+            /* Timeline styling */
+.timeline-circle {
+  position: absolute;
+  left: -20px;
+  top: 2.3em;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  background-color: white;
+  z-index: 2;
+}
+
+.timeline-line {
+  position: absolute;
+  left: -15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #ddd;
+  z-index: 1;
+}
+
+.job {
+  position: relative;
+}
+
+.job-date {
+  margin-bottom: 8px;
+}
+
+
+.sub-jobs:before, .sub-jobs:after {
+  display: block;
+  content: "";
+  width: 34px;
+  height: 2px;
+  background-color: #ddd;
+  position: absolute;
+  left: -15px;
+
+}
+
+.sub-jobs:before {
+  top: 0;   
+}
+
+.sub-jobs:after {
+  bottom: 0;   
+}
             
             @media print {
               body {
@@ -253,8 +296,13 @@ export function CvPreview({ cvData }: CvPreviewProps) {
     })
   }
 
-  const renderJobExperience = (job: JobExperience, isSubJob = false, isLast = false) => (
-    <div key={job.id} className={`${isSubJob ? "ml-8" : ""} pt-8 job relative`}>
+  const renderJobExperience = (job: JobExperience, isSubJob = false, index: number, length: number) => {
+
+    const isLast =  index === cvData.experience.length - 1;
+    const isFirst = index === 0;
+    return (
+
+    <div key={job.id} className={`${isSubJob ? "ml-8" : ""} pt-8 job relative ${isLast ? "pb-8" : ""}`}>
       {/* Timeline elements */}
       <div className="timeline-circle"></div>
       <div className="timeline-line"></div>
@@ -278,12 +326,13 @@ export function CvPreview({ cvData }: CvPreviewProps) {
       {job.description && <p className="mt-2 text-sm job-description whitespace-pre-line">{job.description}</p>}
 
       {job.subJobs && job.subJobs.length > 0 && (
-        <div className="sub-jobs relative">
-          {job.subJobs.map((subJob, index) => renderJobExperience(subJob, true, index === job.subJobs.length - 1))}
+        <div className="sub-jobs relative mt-4 -pt-8">
+          {job.subJobs.map((subJob, index) => renderJobExperience(subJob, true, index, job.subJobs.length))}
         </div>
       )}
     </div>
   )
+}
 
   return (
     <div className="space-y-4">
@@ -336,7 +385,7 @@ export function CvPreview({ cvData }: CvPreviewProps) {
                 <h2 className="text-2xl font-semibold mb-4">{t("cv.experience")}</h2>
                 <div className="relative">
                   {cvData.experience.map((job, index) =>
-                    renderJobExperience(job, false, index === cvData.experience.length - 1),
+                    renderJobExperience(job, false, index, cvData.experience.length),
                   )}
                 </div>
               </div>
@@ -350,9 +399,6 @@ export function CvPreview({ cvData }: CvPreviewProps) {
                   {cvData.education.map((edu, index) => (
                     <div key={edu.id} className="job relative">
                       {/* Timeline elements for education */}
-                      <div className="timeline-circle"></div>
-                      {index < cvData.education.length - 1 && <div className="timeline-line"></div>}
-
                       {/* Date at the top, left-aligned */}
                       <p className="text-sm text-muted-foreground job-date">
                         {formatDate(edu.startDate, false)} - {formatDate(edu.endDate, edu.isPresent)}
