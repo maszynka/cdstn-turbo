@@ -1,10 +1,10 @@
-import { type ReactNode } from "react";
+import * as React from "react";
 import "./panel.scss";
 import { Stream } from "../Video/Stream";
 import { GradientTxt, GradientTxtWrap } from "@t3-test/components/Txt";
 interface MovementSpec {
   label: string;
-  value: ReactNode;
+  value: React.ReactNode;
 }
 type SpecsProps = { specs: MovementSpec[] };
 const Spec = ({ label, value }: MovementSpec) => {
@@ -27,8 +27,8 @@ const Specs = ({ specs }: SpecsProps) => {
 };
 
 type PanelProps = {
-  title: ReactNode;
-  summary: ReactNode;
+  title: React.ReactNode;
+  summary: React.ReactNode;
   tags: string[];
   duration: { time: number; unit: string; note: string };
   wtfFactor: { level: number; note: string };
@@ -42,11 +42,11 @@ type PanelProps = {
 //   </GradientTxtWrap>
 // );
 
-const Tags = ({ children }: { children: ReactNode }) => {
+const Tags = ({ children }: { children: React.ReactNode }) => {
   return <div className="tags">{children}</div>;
 };
 
-const Tag = ({ children }: { children: ReactNode }) => {
+const Tag = ({ children }: { children: React.ReactNode }) => {
   return <span className="tag">{children}</span>;
 };
 

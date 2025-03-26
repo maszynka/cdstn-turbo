@@ -85,7 +85,7 @@ export default function WorkOut() {
                     preload="none"
                     poster="\images\yoga_at_desk_business.jpg"
                   >
-                    <source src="/videos/simple_video.mp4" type="video/mp4" />
+                    {/* <source src="/videos/simple_video.mp4" type="video/mp4" /> */}
                     Your browser does not support the video tag.
                   </video>
                 </div>

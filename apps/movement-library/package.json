@@ -13,6 +13,7 @@
     "deploy": "pnpm run pages:build && wrangler pages deploy"
   },
   "dependencies": {
+    "@auth/core": "0.37.2",
     "@cloudflare/stream-react": "^1.9.3",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-icons": "^1.3.2",
@@ -20,6 +21,7 @@
     "@t3-oss/env-nextjs": "^0.7.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "lucide-react": "^0.484.0",
     "next": "^14.2.26",
     "next-auth": "beta",
     "react": "18.2.0",
@@ -33,14 +35,14 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "1.13.10",
-    "@types/eslint": "^8.56.12",
+    "@types/eslint": "^9.6.1",
     "@types/node": "^18.19.83",
-    "@types/react": "^18.3.20",
-    "@types/react-dom": "^18.3.5",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.21",
-    "eslint": "^8.57.1",
+    "eslint": "^9.23.0",
     "eslint-config-next": "^14.2.26",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
@@ -52,5 +54,11 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.25.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "18.2.79",
+      "@types/react-dom": "18.2.79"
+    }
   }
 }
