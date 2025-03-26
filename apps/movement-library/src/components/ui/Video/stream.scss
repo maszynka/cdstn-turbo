@@ -1,0 +1,58 @@
+%absolute-stretch {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stream-iframe {
+  border-radius: 20px;
+  overflow: hidden;
+  @extend %absolute-stretch;
+  z-index: 2;
+  background-image: var(--bg);
+}
+.stream__thumb {
+@extend %absolute-stretch;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(10px);
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.stream--outside-wrap {
+  width: 100%;
+  height: auto;
+  position: relative;
+  padding-top: calc(100% / var(--width) * var(--height));
+  // background-image: var(--bg);
+  // filter: blur(4px);
+  // style to make it cover and stretch
+  background-clip: border-box;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 20px;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    filter: blur(5px);
+    background-image: var(--bg);
+  }
+}
+
+.stream--inner-wrap {
+@extend %absolute-stretch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
