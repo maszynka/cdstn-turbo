@@ -22,14 +22,14 @@ export const metadata = {
 //   <RawLink {...props} className="gap-4" />
 // );
 
-const isDark = true;
+const isDark = false;
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const classNames = clsx(isDark && 'dark', `grid ${inter.variable} p-6`);
+  const classNames = clsx(isDark && 'dark', `grid ${inter.variable} p-6 force-mobile`);
   return (
     <html lang="en">
       <body className={classNames}>

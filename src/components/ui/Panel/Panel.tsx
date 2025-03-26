@@ -25,16 +25,22 @@ const Specs = ({ specs }: SpecsProps) => {
     </div>
   );
 };
+
 type PanelProps = {
   title: ReactNode;
   summary: ReactNode;
+  tags: string[];
+  duration: { time: number; unit: string; note: string };
+  wtfFactor: { level: number; note: string };
+  steps: string[];
+  presenter: { name: string; avatar: string; link: string };
 };
 
-const YAGTLF = () => (
-  <GradientTxtWrap className="yagtlf">
-    <GradientTxt>You are going to look fine</GradientTxt> 🏆
-  </GradientTxtWrap>
-);
+// const YAGTLF = () => (
+//   <GradientTxtWrap className="yagtlf">
+//     <GradientTxt>You are going to look fine</GradientTxt> 🏆
+//   </GradientTxtWrap>
+// );
 
 const Tags = ({ children }: { children: ReactNode }) => {
   return <div className="tags">{children}</div>;
@@ -44,16 +50,17 @@ const Tag = ({ children }: { children: ReactNode }) => {
   return <span className="tag">{children}</span>;
 };
 
-export const Panel = ({ title, summary }: PanelProps) => {
+export const Panel = ({ title, summary, tags }: PanelProps) => {
   return (
     <div className="panel">
       <div className="panel__header">
         <h3 className="panel__title">{title}</h3>
         <Tags>
-          <Tag>Only desk</Tag>
-          <Tag>Backpain</Tag>
-          <Tag>Neck</Tag>
-          <Tag>Quick results</Tag>
+          {
+            tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))
+          }
         </Tags>
       </div>
 
@@ -62,7 +69,6 @@ export const Panel = ({ title, summary }: PanelProps) => {
         specs={[
           { label: "Time:", value: "12s" },
           { label: "Advance level:", value: "Beginner/Everyone" },
-          { label: "Weirdeness:", value: <YAGTLF /> },
         ]}
       />
       <Stream

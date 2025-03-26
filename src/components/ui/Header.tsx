@@ -49,9 +49,9 @@ const NewsletterLink = () => {
 const Invitation = () => {
   return (
     <div className="invitation">
-      <GradientTxtWrap className="shiny-slogan">✨<GradientTxt>Make work efficient without body pain</GradientTxt></GradientTxtWrap>
-      <h2 className="slogan">Mobility workouts not only for the coders_</h2>
-      <h4 className="subslogan">Minimize your your pain with our movement library.</h4>
+      <h4 className="subslogan">Chosen by specialists<sup>1</sup>. Free. </h4>
+      <h2 className="slogan"><strong>12 seconds</strong> mobility workouts</h2>
+      <h4 className="subslogan">In front of desk. Do it now</h4>
     </div>
   )
 }
