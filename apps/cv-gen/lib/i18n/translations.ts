@@ -31,7 +31,7 @@ export const translations = {
       saveSuccess: "Your CV has been saved successfully.",
       clearConfirm: "Are you sure you want to clear all your CV data? This cannot be undone.",
       dataCleared: "Your CV data has been cleared successfully.",
-      autoSave: "Your data is automatically saved as URL. To not loose your data bookmark the page after your edits and update your bookmark on each new version. We don't store your data.",
+      autoSave: "Your data is automatically saved as URL and in your browser cache. To not loose your data bookmark the page after your edits and update your bookmark on each new version. We do not store your data.",
       wontLose: "You won't lose your work if you refresh the page.",
     },
     form: {
