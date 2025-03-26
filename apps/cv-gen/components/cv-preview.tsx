@@ -3,10 +3,15 @@
 import type { CvData, JobExperience } from "./cv-generator"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Download, Printer } from "lucide-react"
-import { useRef } from "react"
+import { Download, Printer, Share } from "lucide-react"
+import { useRef, useState } from "react"
 import { exportToPdf, exportToDocx } from "@/lib/export"
 import { useTranslation } from "@/lib/i18n/use-translation"
+import { useToast } from "@/components/ui/use-toast"
+
+// In-memory storage for CVs
+// In a production app, you would use localStorage, IndexedDB, or a backend service
+const CV_STORAGE = new Map()
 
 interface CvPreviewProps {
   cvData: CvData
@@ -15,6 +20,8 @@ interface CvPreviewProps {
 export function CvPreview({ cvData }: CvPreviewProps) {
   const { t } = useTranslation()
   const cvRef = useRef<HTMLDivElement>(null)
+  const { toast } = useToast()
+  const [shareUrl, setShareUrl] = useState<string | null>(null)
 
   const handleExportPdf = async () => {
     if (cvRef.current) {
@@ -25,27 +32,20 @@ export function CvPreview({ cvData }: CvPreviewProps) {
   const handleExportDocx = async () => {
     await exportToDocx(cvData)
   }
-
-  const handlePrint = () => {
-    const printWindow = window.open("", "_blank")
-    if (!printWindow) {
-      alert("Please allow pop-ups to print your CV")
-      return
-    }
-
-    // Get the CV content
-    const cvContent = cvRef.current?.innerHTML || ""
-
-    const fullName = `${cvData.personalInfo.firstName} ${cvData.personalInfo.lastName}`
-
-    // Create a complete HTML document with proper styling
-    printWindow.document.write(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>${fullName}</title>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  const handleShare = () => {
+    // Generate a unique ID for the CV
+    const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+    
+    // Store the CV data in memory
+    CV_STORAGE.set(id, cvData)
+    
+    // Create the share URL
+    const shareUrl = `${window.location.origin}/cv/${id}`
+    setShareUrl(shareUrl)
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(shareUrl)
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
             
