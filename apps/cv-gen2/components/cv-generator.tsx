@@ -36,7 +36,8 @@ export type Education = {
 export type CvData = {
   id?: string
   personalInfo: {
-    fullName: string
+    firstName: string
+    lastName: string
     email: string
     phone: string
     address: string
@@ -49,7 +50,8 @@ export type CvData = {
 
 const initialCvData: CvData = {
   personalInfo: {
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     address: "",
@@ -100,7 +102,7 @@ export function CvGenerator({ initialData, onDataChange }: CvGeneratorProps) {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">
-          {cvData.personalInfo.fullName ? `${cvData.personalInfo.fullName}'s CV` : t("cv.newCv")}
+          {cvData.personalInfo.firstName ? `${cvData.personalInfo.firstName}'s CV` : t("cv.newCv")}
         </h2>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={clearLocalData} title={t("common.clear")}>

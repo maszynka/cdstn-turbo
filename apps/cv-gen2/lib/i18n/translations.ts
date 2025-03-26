@@ -35,7 +35,8 @@ export const translations = {
       wontLose: "You won't lose your work if you refresh the page.",
     },
     form: {
-      fullName: "Full Name",
+      firstName: "First Name",
+      lastName: "Last Name",
       email: "Email",
       phone: "Phone",
       address: "Address",
@@ -98,7 +99,8 @@ export const translations = {
       wontLose: "No perderás tu trabajo si actualizas la página.",
     },
     form: {
-      fullName: "Nombre completo",
+      firstName: "Nombre",
+      lastName: "Apellido",
       email: "Correo electrónico",
       phone: "Teléfono",
       address: "Dirección",
@@ -162,7 +164,8 @@ export const translations = {
       wontLose: "Vous ne perdrez pas votre travail si vous actualisez la page.",
     },
     form: {
-      fullName: "Nom complet",
+      firstName: "Prénom",
+      lastName: "Nom de famille",
       email: "Email",
       phone: "Téléphone",
       address: "Adresse",
@@ -226,7 +229,8 @@ export const translations = {
       wontLose: "Sie verlieren Ihre Arbeit nicht, wenn Sie die Seite aktualisieren.",
     },
     form: {
-      fullName: "Vollständiger Name",
+      firstName: "Vorname",
+      lastName: "Nachname",
       email: "E-Mail",
       phone: "Telefon",
       address: "Adresse",
@@ -289,7 +293,8 @@ export const translations = {
       wontLose: "刷新页面不会丢失您的工作。",
     },
     form: {
-      fullName: "全名",
+      firstName: "名",
+      lastName: "姓",
       email: "电子邮件",
       phone: "电话",
       address: "地址",

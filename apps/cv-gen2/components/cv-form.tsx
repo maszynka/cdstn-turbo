@@ -216,13 +216,21 @@ export function CvForm({ cvData, setCvData }: CvFormProps) {
         </CardHeader>
         {expandedSections.personalInfo && (
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="fullName">{t("form.fullName")}</Label>
+                <Label htmlFor="firstName">{t("form.firstName")}</Label>
                 <Input
-                  id="fullName"
-                  value={cvData.personalInfo.fullName}
-                  onChange={(e) => updatePersonalInfo("fullName", e.target.value)}
+                  id="firstName"
+                  value={cvData.personalInfo.firstName}
+                  onChange={(e) => updatePersonalInfo("firstName", e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="lastName">{t("form.lastName")}</Label>
+                <Input
+                  id="lastName"
+                  value={cvData.personalInfo.lastName}
+                  onChange={(e) => updatePersonalInfo("lastName", e.target.value)}
                 />
               </div>
               <div className="space-y-2">
@@ -348,7 +356,6 @@ export function CvForm({ cvData, setCvData }: CvFormProps) {
                       type="text"
                       value={job.location}
                       onChange={(e) => updateExperience(index, "location", e.target.value)}
-                      disabled={job.isPresent}
                     />
                   </div>
                 </div>
@@ -374,7 +381,7 @@ export function CvForm({ cvData, setCvData }: CvFormProps) {
                 </div>
 
                 {job.isOwnCompany && (
-                  <div className="pl-6 border-l-2 border-gray-200 mt-4 space-y-4">
+                  <div className="border-l-2 border-gray-200 mt-4 space-y-4">
                     <div className="flex justify-between items-center">
                       <h4 className="text-md font-medium">{t("form.clientProjects")}</h4>
                       <Button variant="outline" size="sm" onClick={() => addSubJob(index)}>

@@ -36,12 +36,14 @@ export function CvPreview({ cvData }: CvPreviewProps) {
     // Get the CV content
     const cvContent = cvRef.current?.innerHTML || ""
 
+    const fullName = `${cvData.personalInfo.firstName} ${cvData.personalInfo.lastName}`
+
     // Create a complete HTML document with proper styling
     printWindow.document.write(`
       <!DOCTYPE html>
       <html>
         <head>
-          <title>${cvData.personalInfo.fullName || "CV"}</title>
+          <title>${fullName}</title>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <style>
@@ -129,6 +131,8 @@ export function CvPreview({ cvData }: CvPreviewProps) {
               font-size: 14px;
               white-space: pre-line;
             }
+
+
             
             .sub-jobs {
               margin-left: 20px;
@@ -157,7 +161,7 @@ export function CvPreview({ cvData }: CvPreviewProps) {
             .timeline-circle {
               position: absolute;
               left: -20px;
-              top: 24px;
+              top: 2.3em;
               width: 12px;
               height: 12px;
               border-radius: 50%;
@@ -168,8 +172,8 @@ export function CvPreview({ cvData }: CvPreviewProps) {
             .timeline-line {
               position: absolute;
               left: -15px;
-              top: 36px;
-              bottom: -15px;
+              top: 0;
+              bottom: 0;
               width: 2px;
               background-color: #ddd;
             }
@@ -250,10 +254,10 @@ export function CvPreview({ cvData }: CvPreviewProps) {
   }
 
   const renderJobExperience = (job: JobExperience, isSubJob = false, isLast = false) => (
-    <div key={job.id} className={`${isSubJob ? "ml-6 mt-2" : "mb-8"} job relative pl-6`}>
+    <div key={job.id} className={`${isSubJob ? "ml-8" : ""} pt-8 job relative`}>
       {/* Timeline elements */}
       <div className="timeline-circle"></div>
-      {!isLast && <div className="timeline-line"></div>}
+      <div className="timeline-line"></div>
 
       {/* Date at the top, left-aligned */}
       <p className="text-sm text-muted-foreground job-date">
@@ -274,8 +278,7 @@ export function CvPreview({ cvData }: CvPreviewProps) {
       {job.description && <p className="mt-2 text-sm job-description whitespace-pre-line">{job.description}</p>}
 
       {job.subJobs && job.subJobs.length > 0 && (
-        <div className="mt-4 border-l-2 border-gray-200 pl-4 sub-jobs">
-          <h4 className="text-sm font-medium mb-3">{t("form.clientProjects")}:</h4>
+        <div className="sub-jobs relative">
           {job.subJobs.map((subJob, index) => renderJobExperience(subJob, true, index === job.subJobs.length - 1))}
         </div>
       )}
@@ -297,7 +300,7 @@ export function CvPreview({ cvData }: CvPreviewProps) {
       </div>
 
       <Card className="print:shadow-none">
-        <CardContent className="p-6" ref={cvRef}>
+        <CardContent className="p-8" ref={cvRef}>
           <div className="space-y-6 section">
             {/* Header - Left-aligned */}
             <div className="text-left border-b pb-4">
@@ -331,7 +334,7 @@ export function CvPreview({ cvData }: CvPreviewProps) {
             {cvData.experience.length > 0 && (
               <div className="section">
                 <h2 className="text-2xl font-semibold mb-4">{t("cv.experience")}</h2>
-                <div className="space-y-6 relative">
+                <div className="relative">
                   {cvData.experience.map((job, index) =>
                     renderJobExperience(job, false, index === cvData.experience.length - 1),
                   )}
@@ -345,7 +348,7 @@ export function CvPreview({ cvData }: CvPreviewProps) {
                 <h2 className="text-2xl font-semibold mb-4">{t("cv.education")}</h2>
                 <div className="space-y-5">
                   {cvData.education.map((edu, index) => (
-                    <div key={edu.id} className="job relative pl-6">
+                    <div key={edu.id} className="job relative">
                       {/* Timeline elements for education */}
                       <div className="timeline-circle"></div>
                       {index < cvData.education.length - 1 && <div className="timeline-line"></div>}

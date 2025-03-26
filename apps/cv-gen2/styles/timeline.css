@@ -2,7 +2,7 @@
 .timeline-circle {
   position: absolute;
   left: -20px;
-  top: 24px;
+  top: 2.3em;
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -14,8 +14,8 @@
 .timeline-line {
   position: absolute;
   left: -15px;
-  top: 36px;
-  bottom: -15px;
+  top: 0;
+  bottom: 0;
   width: 2px;
   background-color: #ddd;
   z-index: 1;
@@ -33,6 +33,17 @@
   color: #777;
   font-size: 13px;
   margin-left: 5px;
+}
+
+.sub-jobs:before {
+  display: block;
+  content: "";
+  width: 24px;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  left: -15px;
+  top: 0;   
 }
 
 /* Increase section heading sizes */
