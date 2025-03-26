@@ -1,0 +1,36 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "psypapka"
+main = ".open-next/worker.js"
+
+compatibility_date = "2024-09-26"
+compatibility_flags = ["nodejs_compat"]
+
+# Minification helps to keep the Worker bundle size down and improve start up time.
+minify = true
+
+# Use the new Workers + Assets to host the static frontend files
+assets = { directory = ".open-next/assets", binding = "ASSETS" }
+
+[observability]
+enabled = true
+
+[placement]
+mode = "smart"
+
+[[d1_databases]]
+binding = "DATABASE"
+database_name = "qzapp-1"
+database_id = "2ed10e1d-985b-44bf-9788-afab81acf9d0"
+migrations_dir = "src/db/migrations"
+
+[[kv_namespaces]]
+binding = "NEXT_CACHE_WORKERS_KV"
+id = "63fda654d72548dfa2749812db5ef00c"
+
+[vars]
+EMAIL_FROM = "qzapp@danielbogusz.com"
+EMAIL_FROM_NAME = "Qzapp"
+EMAIL_REPLY_TO = "qzapp@danielbogusz.com"
+
+# If using Resend don't forget to set the RESEND_API_KEY as a worker secret
+# If using Brevo don't forget to set the BREVO_API_KEY as a worker secret
