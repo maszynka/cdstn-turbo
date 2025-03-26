@@ -50,6 +50,7 @@ export default function App() {
               const decompressed = decompressFromEncodedURIComponent(compressedData)
               if (decompressed) {
                 const parsedData = JSON.parse(decompressed) as CvData
+                console.log('parsedData', parsedData);
                 setCvData(parsedData)
               }
             }

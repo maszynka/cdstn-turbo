@@ -30,30 +30,3 @@ export async function saveCV(cvData: CvData): Promise<string> {
   }
 }
 
-// Get CV by ID from storage
-export async function getCvById(id: string): Promise<CvData | null> {
-  try {
-    const response = await fetch(`/api/cv/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-    if (!response.ok) {
-      if (response.status === 404) {
-        return null
-      }
-      const errorData = await response.json()
-      console.error("Server error:", errorData)
-      throw new Error(`Failed to get CV: ${response.status} ${response.statusText}`)
-    }
-
-    const result = await response.json()
-    return result
-  } catch (error) {
-    console.error("Error getting CV:", error)
-    throw error
-  }
-}
-
