@@ -1,0 +1,52 @@
+{
+  "name": "movement-lib",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@cloudflare/stream-react": "^1.9.3",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@t3-oss/env-nextjs": "^0.7.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "next": "^14.1.0",
+    "next-auth": "beta",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.72.0",
+    "shaka-player-react": "^1.1.5",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7",
+    "vercel": "^33.6.2",
+    "wrangler": "^3.41.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@cloudflare/next-on-pages": "1.8.5",
+    "@types/eslint": "^8.56.2",
+    "@types/node": "^18.17.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0",
+    "postcss": "^8.4.33",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.12",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.25.2"
+  }
+}

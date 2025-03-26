@@ -1,0 +1,31 @@
+
+:root, .light {
+    --color-accent: #BEF54B;
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #62665D;
+
+    // excercise block
+    --color-excercise-title: #101804;
+    --color-excercise-tags: #62665D;
+
+    // excercise block video
+    --color-excercise-video-overlay-bg: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(230,235,223,1) 100%);
+    --color-excercise-video-overlay-text: #101804;
+    --color-excercise-video-overlay-stroke: #AEF33F;
+
+    // box-shadow: 0px 1px 4px 0px #10180429;
+
+    // box-shadow: 0px 0px 0px 1px #AEF33F;
+    
+    // box-shadow: 0px 0px 0px 1px #FFFFFF30 inset;
+}
+
+body {
+    font-family: var(--font-inter), 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none !important;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(223,225,222,1) 100%);
+}
