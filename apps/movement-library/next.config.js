@@ -3,12 +3,19 @@
  * for Docker builds.
  */
 await import("./src/env.js");
+import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
+
 
 /** @type {import("next").NextConfig} */
-const config = {  
-    images: {
+const config = {
+  images: {
     loader: 'custom',
     loaderFile: './src/lib/img-loader.js',
-  },};
+  },
+};
+
+if (process.env.NODE_ENV === 'development') {
+  await setupDevPlatform();
+}
 
 export default config;

@@ -1,11 +1,10 @@
 // import { Header } from "@t3-test/components/ui/Header";
 import { Panel } from "@t3-test/components/ui/Panel/Panel";
 import { time } from "console";
-import { ReactNode } from "react";
+import * as React from "react";
 // import Link from "next/link";
-// import { type ReactNode } from "react";
 
-const Panels = ({ children }: { children: ReactNode }) => {
+const Panels = ({ children }: { children: React.ReactNode }) => {
   return <div className="panels">{children}</div>;
 };
 
