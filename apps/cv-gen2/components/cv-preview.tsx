@@ -104,8 +104,10 @@ export function CvPreview({ cvData }: CvPreviewProps) {
             }
             
             .job {
-              margin-bottom: 15px;
               position: relative;
+              position: relative;
+              padding-top: 8px;
+              padding-bottom: 8px;
             }
             
             .job-header {
@@ -123,7 +125,7 @@ export function CvPreview({ cvData }: CvPreviewProps) {
               color: #555;
               font-size: 14px;
               white-space: nowrap;
-              margin-bottom: 5px;
+              margin-bottom: 8px;
             }
             
             .job-description {
@@ -131,14 +133,10 @@ export function CvPreview({ cvData }: CvPreviewProps) {
               font-size: 14px;
               white-space: pre-line;
             }
-
-
             
             .sub-jobs {
-              margin-left: 20px;
               margin-top: 10px;
-              padding-left: 10px;
-              border-left: 2px solid #eee;
+              position: relative;
             }
             
             .skills {
@@ -158,84 +156,123 @@ export function CvPreview({ cvData }: CvPreviewProps) {
               white-space: pre-line;
             }
             
+            /* Timeline styling */
             .timeline-circle {
               position: absolute;
-              left: -20px;
+              left: -22px;
               top: 2.3em;
               width: 12px;
               height: 12px;
               border-radius: 50%;
               border: 2px solid #555;
               background-color: white;
+              z-index: 2;
             }
             
+            .timeline-line {
+              position: absolute;
+              left: -15px;
+              top: 0;
+              bottom: 0;
+              width: 2px;
+              background-color: #ddd;
+              z-index: 1;
+            }
             
             .job-duration {
               color: #777;
               font-size: 13px;
               margin-left: 5px;
             }
+            
+            /* Improved timeline styling */
+            .sub-jobs {
+              position: relative;
+            }
+            
+            .sub-jobs:before, .sub-jobs:after {
+              display: block;
+              content: "";
+              width: 34px;
+              height: 2px;
+              background-color: #ddd;
+              position: absolute;
+              left: -15px;
 
-            /* Timeline styling */
-.timeline-circle {
-  position: absolute;
-  left: -20px;
-  top: 2.3em;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid #555;
-  background-color: white;
-  z-index: 2;
-}
+            }
 
-.timeline-line {
-  position: absolute;
-  left: -15px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: #ddd;
-  z-index: 1;
-}
+            .sub-jobs:before {
+              top: 0;   
+            }
 
-.job {
-  position: relative;
-}
-
-.job-date {
-  margin-bottom: 8px;
-}
-
-
-.sub-jobs:before, .sub-jobs:after {
-  display: block;
-  content: "";
-  width: 34px;
-  height: 2px;
-  background-color: #ddd;
-  position: absolute;
-  left: -15px;
-
-}
-
-.sub-jobs:before {
-  top: 0;   
-}
-
-.sub-jobs:after {
-  bottom: 0;   
-}
+            .sub-jobs:after {
+              bottom: 0;   
+            }
+            
+            /* Make relative positioning work better */
+            .relative {
+              position: relative;
+            }
+            
+            /* Spacing utilities */
+            .mt-2 { margin-top: 0.5rem; }
+            .mt-4 { margin-top: 1rem; }
+            .mb-3 { margin-bottom: 0.75rem; }
+            .mb-4 { margin-bottom: 1rem; }
+            .ml-8 { margin-left: 2rem; }
+            .pb-4 { padding-bottom: 1rem; }
+            .pt-8 { padding-top: 2rem; }
+            .pb-8 { padding-bottom: 2rem; }
+            
+            /* Fix border-bottom for section titles */
+            h2 {
+              padding-bottom: 0.5rem;
+              border-bottom: 1px solid #eaeaea;
+            }
+            
+            /* Text utilities */
+            .text-sm { font-size: 0.875rem; }
+            .text-base { font-size: 1rem; }
+            .text-lg { font-size: 1.125rem; }
+            .text-xl { font-size: 1.25rem; }
+            .text-2xl { font-size: 1.5rem; }
+            .font-semibold { font-weight: 600; }
+            .font-bold { font-weight: 700; }
+            .whitespace-pre-line { white-space: pre-line; }
+            .text-muted-foreground { color: #666; }
+            
+            /* Flex utilities */
+            .flex { display: flex; }
+            .flex-wrap { flex-wrap: wrap; }
+            .items-start { align-items: flex-start; }
+            .items-center { align-items: center; }
+            .justify-between { justify-content: space-between; }
+            .gap-2 { gap: 0.5rem; }
+            
+            /* Background utilities */
+            .bg-muted { background-color: #f5f5f5; }
+            
+            /* Border utilities */
+            .border-b { border-bottom: 1px solid #eaeaea; }
+            .rounded-full { border-radius: 9999px; }
+            
+            /* Add specific fixes for timeline circles */
+            .job .timeline-circle {
+              background-color: white;
+              border: 2px solid #555;
+            }
+            
+            /* Improved sub-jobs styling */
+            .sub-jobs .job {
+              border-left: none;
+            }
             
             @media print {
-              body {
-                padding: 0;
-              }
               
-              .cv-container {
-                box-shadow: none;
-                border: none;
-                padding: 0;
+              .timeline-circle,
+              .timeline-line {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
               }
             }
           </style>
@@ -335,7 +372,7 @@ export function CvPreview({ cvData }: CvPreviewProps) {
 }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 cv-preview-content">
       <div className="flex justify-end space-x-2 mb-4 print:hidden">
         <Button variant="outline" size="sm" onClick={handleExportPdf} id="export-pdf">
           <Download className="mr-2 h-4 w-4" /> {t("cv.exportPdf")}

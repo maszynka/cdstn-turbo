@@ -67,12 +67,12 @@
 @media print {
   /* Hide everything except the CV content */
   body * {
-    visibility: hidden;
+    /* visibility: hidden; */
   }
 
   .cv-preview-content,
   .cv-preview-content * {
-    visibility: visible;
+    visibility: visible !important;
   }
 
   .cv-preview-content {
